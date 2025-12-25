@@ -9,3 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/destinations', [DestinationController::class, 'index']);
+
+Route::post('/destinations', [DestinationController::class, 'store']);
+
+Route::get('/destinations/{id}', [DestinationController::class, 'show']);
+
