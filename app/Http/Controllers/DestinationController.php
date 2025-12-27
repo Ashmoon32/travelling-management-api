@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DestinationResource;
 use Illuminate\Http\Request;
 
 
@@ -10,9 +11,9 @@ class DestinationController extends Controller
 {
     public function index()
     {
-        $places = \App\Models\Destination::all();
+        $destinations = \App\Models\Destination::all();
 
-        return response()->json($places);
+        return DestinationResource::collection($destinations);
     }
 
     public function store(Request $request)
@@ -36,7 +37,7 @@ class DestinationController extends Controller
     public function show($id)
     {
         $destination = \App\Models\Destination::findOrFail($id);
-        return response()->json($destination);
+        return new DestinationResource($destination);
     }
 
     public function destroy($id)
